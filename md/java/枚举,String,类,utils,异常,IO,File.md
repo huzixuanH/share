@@ -1,39 +1,14 @@
-# i++与++i
-```java
-@Test
-public void test2() {
-	int i = 10;
-//   i++; 
-	++i;
-	System.out.println(i);
-}
-// 只有++操作时，本质上无区别。
-```
-
-
-
-+ **i = i++;**
-+ 即i的值先入操作数栈，再对局部变量表的值+1；最后覆盖
-+ ![](https://cdn.nlark.com/yuque/0/2022/png/2348240/1642477888011-dca0e3a6-d825-4c09-b304-b04aa53cb47d.png)
-
-
-
-+ **i = ++i;**
-+ 即i的值先在局部变量表+1，再入操作数栈；最后覆盖
-+ ![](https://cdn.nlark.com/yuque/0/2022/png/2348240/1642477932487-940303f4-963b-4e13-8b47-02765ae156d3.png)
-
 # 枚举	
-+ <font style="color:rgb(52, 73, 94);">枚举类型（</font><font style="color:rgb(233, 105, 0);background-color:rgb(248, 248, 248);">enum type</font><font style="color:rgb(52, 73, 94);">）是指由一组固定的常量组成合法的类型。</font>
-+ 定义的枚举类默认继承Enum类
-    - 方法：
++ 枚举类型（enum type）是指由一组固定的常量组成合法的类型。
++ 定义的枚举类默认继承 Enum 类
++ 方法：
     - name()和toString()	返回枚举值
-    - <font style="color:rgb(52, 73, 94);">compareTo() 比较的是 Enum 的 ordinal 顺序大小</font>
+    - compareTo() 比较的是 Enum 的 ordinal 顺序大小
     - values() 返回枚举类型的对象数组。该方法可以很方便地遍历所有的枚举值。
     - valueOf(String str)：把字符串转为对应的枚举类对象。字符串必须是枚举类对象的“名字”。如不是抛异常：IllegalArgumentException。
-+ 
 + 不能被继承
-+ <font style="color:rgb(233, 105, 0);background-color:rgb(248, 248, 248);">Java</font><font style="color:rgb(52, 73, 94);">中由关键字</font><font style="color:rgb(233, 105, 0);background-color:rgb(248, 248, 248);">enum</font><font style="color:rgb(52, 73, 94);">来定义一个枚举类型。下面就是</font><font style="color:rgb(233, 105, 0);background-color:rgb(248, 248, 248);">java</font><font style="color:rgb(52, 73, 94);">枚举类型的定义。</font>
-+ <font style="color:rgb(52, 73, 94);">可序列化，线程安全。</font>
++ Java中由关键字 enum 来定义一个枚举类型。下面就是java枚举类型的定义。
++ 可序列化，线程安全。
 + 接口返回值不允许使用枚举类型或者包含枚举类型的POJO对象。
 
 
@@ -136,14 +111,7 @@ public interface Food {
     -  不可变对象本质上是线程安全的，它们不要求同步。不可变对象可以被自由地共享。
     -  不仅可以共享不可变对象，甚至可以共享它们的内部信息。
     -  不可变对象为其他对象提供了大量的构建。
-
-
-
-    -  不可变类真正唯一的缺点是，对于每个不同的值都需要一个单独的对象。
-
-
-
-
++ 不可变类真正唯一的缺点是，对于每个不同的值都需要一个单独的对象。
 
 + Java中的不可变类
     - String BigInteger  BigDecimal  Integer Double ...
@@ -153,7 +121,6 @@ public interface Food {
 + 可序列化
 + 自然排序
 + `CharSequence`字符串接口
-+ 
 + 底层是char[]：`private final char value[];`
     - jdk 9 开始变为来byte[]，省空间
 
@@ -167,7 +134,7 @@ public interface Food {
     - ...
 
 ## 常见方法
-+ `<font style="color:#0033b3;">public int </font><font style="color:#00627a;">length</font>()`
++ `public int length()`
 + `public boolean isEmpty()`长度为0返回true
 + `char charAt(int index)`返回某索引处的字符 return value[index]
 + `String toLowerCase()`将 String 中的所有字符转换小写
@@ -178,8 +145,6 @@ public interface Food {
 + `int compareTo(String anotherString)`比较字符串的大小
 + `String substring(int beginIndex)`返回一个新的字符串，从beginIndex开始截取到最后的一个子字符串。
 + `String substring(int beginIndex, int endIndex)`返回从beginIndex开始截取到endIndex(不包含)的一个子字符串。
-
-
 
 
 
@@ -211,8 +176,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 /**
-     * 涉及到String类与其他结构之间的转换
-     */
+ * 涉及到String类与其他结构之间的转换
+ */
 public class StringTest1 {
     /*
         String 与 byte[]之间的转换
@@ -223,7 +188,7 @@ public class StringTest1 {
         解码：编码的逆过程，字节 --> 字符串 （看不懂的二进制数据 ---> 看得懂）
 
         说明：解码时，要求解码使用的字符集必须与编码时使用的字符集一致，否则会出现乱码。
-         */
+     */
     @Test
     public void test3() throws UnsupportedEncodingException {
         String str1 = "abc123中国";
@@ -253,7 +218,7 @@ public class StringTest1 {
 
         String --> char[]:调用String的toCharArray()
         char[] --> String:调用String的构造器
-         */
+     */
     @Test
     public void test2(){
         String str1 = "abc123";  //题目： a21cb3
@@ -275,11 +240,11 @@ public class StringTest1 {
         String --> 基本数据类型、包装类：调用包装类的静态方法：parseXxx(str)
         基本数据类型、包装类 --> String:调用String重载的valueOf(xxx)
 
-         */
+     */
     @Test
     public void test1(){
         String str1 = "123";
-        //        int num = (int)str1;//错误的
+        // int num = (int)str1; // 错误的
         int num = Integer.parseInt(str1);
 
         String str2 = String.valueOf(num);//"123"
@@ -291,8 +256,6 @@ public class StringTest1 {
 
 ## 字符串拼接
 + **StringBuilder & StringBuffer**
-
-
 
 + String：不可变的字符序列：**线程安全**，底层使用char[]存储.(不可变字符串优点：编译器可以让字符串共享)
 + StringBuffer：可变的字符序列：**线程安全**，效率低，底层使用char[]存储
@@ -334,7 +297,7 @@ public void setCharAt(int n ,char ch)：改
 + 
 + **static <T> List<T> asList(T... a) **
     - 返回由指定数组支持的**固定大小**（不能修改）的列表。此方法充当基于数组和基于集合的API之间的桥梁。
-    - <font style="color:rgb(52, 73, 94);">用 </font>ArrayList(Collection<? extends E> c) <font style="color:rgb(52, 73, 94);">的构造器可以将其转变成真正的 ArrayList</font>
+    - 用 ArrayList(Collection<? extends E> c) 的构造器可以将其转变成真正的 ArrayList
 
 ## Math
 + static double abs(double a)  :返回绝对值
@@ -379,9 +342,7 @@ System.out.println(str.replaceAll("-", "")); // e95597910bcd44ed8aa867ac13ed6571
 # 内部类
 ## 成员内部类
 + 在类的成员位置，和成员变量以及成员方法所在的位置是一样的
-+ 
 + 在内部类当中，可以**直接访问外部类的成员，包括私有成员和静态**
-+ 
 + 访问外部类的成员：
     - 外部类.this.成员变量
     - 外部类.this.成员方法
@@ -391,12 +352,28 @@ System.out.println(str.replaceAll("-", "")); // e95597910bcd44ed8aa867ac13ed6571
 + 在外部类中如果要访问成员内部类的成员，必须先创建一个成员内部类的对象。要创建成员内部类的对象，前提是必须存在一个外部类的象：
     - Outter outter = new Outter();
     - Outter.Inner inner = outter.new Inner();
+    
 + 
+
 + 内部类可以用 public、**protected**、private、static、**abstract**和final
     - 用static修饰时，内部类有一个新姓名：**嵌套类**
-
-| public class Demo1 {<br/>	private String name;<br/>	<br/>	public Demo1(String name) {<br/>		this.name = name;<br/>	}<br/>	<br/>	public static void main(String[] args) {<br/>	**	**Inner inner =** new Demo1("jack").new Inner();**<br/>		System.out.println(inner.innerName); // jack<br/>	}<br/>	<br/>	**protected **class Inner{<br/>		private String innerName = **Demo1.this.name;**<br/>	}<br/>} |
-| --- |
+    
+    - ```java
+      public class Demo1 {
+          private String name;
+          public Demo1(String name) {
+              this.name = name;
+          }
+          public static void main(String[] args) {
+              Inner inner = new Demo1("jack").new Inner();
+              System.out.println(inner.innerName); // jack
+          }
+          
+          protected class Inner{
+              private String innerName = Demo1.this.name;
+          }
+      }
+      ```
 
 
 ## 嵌套类
@@ -418,46 +395,30 @@ System.out.println(str.replaceAll("-", "")); // e95597910bcd44ed8aa867ac13ed6571
 + 在局部内部类中调用局部内部类所在方法中的局部变量，则局部变量声明为final。java 8后可省略final
 
 ## 匿名内部类
-+ new 类或接口() {
-
-           // 重写方法；
-
+```java
+new 类或接口() {
+    // 重写方法
 };
+```
 
-+ 
 + 有构造函数
-    - 匿名构造函数是为匿名类隐式声明的
++ 匿名构造函数是为匿名类隐式声明的
 
 # 异常
 + Java 程序设计语言中， 异常对象都是派生于 **Throwable **类的一个实例。
 
-![](https://cdn.nlark.com/yuque/0/2021/png/2348240/1632650260048-0a7ffbe8-651d-4bb5-b897-b6f4f77020ce.png)
+<img src="../assets/异常继承.png" alt="异常继承" style="zoom:70%;" />
 
 ## Error
-+ <font style="color:rgb(52, 73, 94);">Error表⽰系统级的错误， 是 </font>Java 运行时系统的内部错误和资源耗尽错误<font style="color:rgb(52, 73, 94);">， 不能指望程序来处理这样的问题， 除了退出运⾏外别⽆选择， 它是Java虚拟机抛出的。</font>
++ Error表⽰系统级的错误， 是 Java 运行时系统的内部错误和资源耗尽错误， 不能指望程序来处理这样的问题， 除了退出运⾏外别⽆选择， 它是Java虚拟机抛出的。
 
 ## 异常类型
-+ 将派生于 **Error **类或 **RuntimeException **类的所有异常称为**<font style="color:#F5222D;">非受查(unchecked) 异常</font>**，所有其他的异常称为**<font style="color:#F5222D;">受查（checked) 异常</font>**。编译器将核查你是否为所有的受査异常提供了异常处理器。
-+ 
-+ **运行时异常（RuntimeException）**：由程序错误导致的异常。 RuntimeException 及其子类表示JVM在运行期间可能出现的错误。比如 NullPointerException，，NumberFormatException，ClassCastException （类型转换错误）、 ArithmeticException （算术错误） 。此类异常属于不可查异常，一般是由程序逻辑错误引起的，在程序中可以选择捕获处理，可以不处理。
-+ 
++ 将派生于 **Error **类或 **RuntimeException **类的所有异常称为**非受查(unchecked) 异常**，所有其他的异常称为**受查（checked) 异常**。编译器将核查你是否为所有的受査异常提供了异常处理器。
++ **运行时异常（RuntimeException）**：由程序错误导致的异常。 RuntimeException 及其子类表示JVM在运行期间可能出现的错误。如 NullPointerException，NumberFormatException，ClassCastException （类型转换错误）、 ArithmeticException （算术错误） 。此类异常属于不可查异常，一般是由程序逻辑错误引起的，在程序中可以选择捕获处理，可以不处理。
 + **编译异常(受检异常)**：程序本身没有问题， 但由于像 I/O 错误这类问题导致的异常。如果程序中出现此类异常，比如说IOException必须对该异常进行处理，否则编译不通过。
 
-## 关键字
-+ **<font style="color:rgb(52, 73, 94);">throws、 throw、 try、 catch、 finally</font>**
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">try ⽤来指定⼀块预防所有异常的程序；</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">catch ⼦句紧跟在 try 块后⾯，⽤来指定你想要捕获的异常的类型；</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">finally 为确保⼀段代码不管发⽣什么异常状况都要被执⾏；</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">throw 语句⽤来明确地抛出⼀个异常；</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">throws ⽤来声明⼀个⽅法可能抛出的各种异常；</font>
-
 ## 格式
-```plain
+```java
 try {
 	可能出现异常的代码；
 } catch(异常类名1 变量名1) {
@@ -468,7 +429,7 @@ try {
 	一定会执行的代码;
 }
 
-同时使用catch和finally时建议使用又一种格式，解耦合 try/catch 和 try/finally 语句块：
+// 同时使用catch和finally时建议使用又一种格式，解耦合 try/catch 和 try/finally 语句块：
 try {
   try {
     可能出现异常的代码；
@@ -479,7 +440,7 @@ try {
   异常的处理代码;
 }
 
-优点：提高代码的清晰度；将会捕获 finally 子句中出现的错误。
+// 优点：提高代码的清晰度；将会捕获 finally 子句中出现的错误。
 ```
 
 + 进行多个异常处理时：
@@ -489,19 +450,15 @@ try {
     - 父类不用throws抛异常，子类也不能，要用try...catch...
     - 当一个方法a调用中又调用了其他方法，其他方法需处理异常时使用throws，回到方法a中使用try...catch...
 
-
-
-
-
 + finally不执行
     - JVM 过早终止（调用 System.exit(int)）；
     - 在 finally 块中抛出一个未处理的异常；
     - 计算机断电、失火、或遭遇病毒攻击。
 
 ## 自定义异常
-+ <font style="color:rgb(52, 73, 94);">⾃定义异常就是开发⼈员⾃⼰定义的异常， ⼀般通过继承</font><font style="color:rgb(233, 105, 0);background-color:rgb(248, 248, 248);">Exception</font><font style="color:rgb(52, 73, 94);">的⼦类的⽅式实现。</font>
-+ <font style="color:rgb(52, 73, 94);">编写⾃定义异常类实际上是继承⼀个API标准异常类， ⽤新定义的异常处理信息覆盖原有信息的过程。</font>
-+ <font style="color:rgb(52, 73, 94);">这种⽤法在Web开发中也⽐较常见， ⼀般可以⽤来⾃定义业务异常。 如余额不足、 重复提交等。 这种⾃定义异常有业务含义， 更容易让上层理解和处理。</font>
++ ⾃定义异常就是开发⼈员⾃⼰定义的异常， ⼀般通过继承Exception的⼦类的⽅式实现。
++ 编写⾃定义异常类实际上是继承⼀个API标准异常类， ⽤新定义的异常处理信息覆盖原有信息的过程。
++ 这种⽤法在Web开发中也⽐较常见， ⼀般可以⽤来⾃定义业务异常。 如余额不足、 重复提交等。 这种⾃定义异常有业务含义， 更容易让上层理解和处理。
 
 ```java
 // 继承Exception或其子类
@@ -521,81 +478,66 @@ class ScoreException extends Exception{
 ## 带资源的 try 语句
 + jdk 7 新增。
 
-
-
 + 假设资源属于一个实现了 **AutoCloseable **接口的类，Java SE 7 为这种代码模式提供了一个很有用的快捷方式。AutoCloseable 接口有一个方法：void close() throws Exception
 
++ 带资源的 try 语句的形式为
+
+  + ```java
+    /**
+    try (Resource2 res1 = . . .; Resource2 res2 = . . .) {
+        // work with res  
+    } catch (e) {
+    	// xx
+    } finally {
+    	// xx
+    }
+    **/
+    
+    
+    // try 块退出时，会自动调用 res.close() 方法。如，向一个文件中写入 hello
+    try ( FileOutputStream fos = new FileOutputStream("myFile\\fos.txt") ) {
+    	fos.write("hello".getBytes());
+    } catch (IOException e) {
+    	e.printStackTrace();
+    }
+    ```
 
 
-+ 带资源的 try 语句的形式为：  
-**try (Resource2 res1 = . . .; Resource2 res2 = . . .) {  
-****	// work with res  
-****}**
-
-
-
-+ try块退出时，会自动调用 res.close() 方法。如，向一个文件中写入“hello”：
-
-	try ( FileOutputStream fos = new FileOutputStream("myFile\\fos.txt") ) {
-
-		fos.write("hello".getBytes());
-
-	} catch (IOException e) {
-
-		e.printStackTrace();
-
-	}
-
-
-
-+ 带资源的 try 语句自身也可以有 catch 子句和一个 finally 子句。 这些子句会在关闭资源之后执行。 不过在实际中， 一个 try 语句中加入这么多内容可能不是一个好做法。
-
-## finally 与return
+## finally 与 return
 + 在try语句中执行了return语句时，finally中的语句还是会执行
 + finally语句块中对return的值的修改无效
 + 如果finally中也有return语句则于finally中的为准
 
 # 编码方式
 ## 什么是ASCII码
-+ <font style="color:rgb(52, 73, 94);">ASCII（ American Standard Code for InformationInterchange， 美国信息交换标准代码） 是基于拉丁字母的⼀套电脑编码系统， 主要⽤于显⽰现代英语和其他西欧语⾔。</font>
-+ <font style="color:rgb(52, 73, 94);">是现今最通⽤的单字节编码系统， 并等同于国际标准ISO/IEC646。</font>
-+ <font style="color:rgb(52, 73, 94);">标准ASCII 码也叫基础ASCII码， 使⽤7 位⼆进制数（ 剩下的1位⼆进制为0） 来表⽰所有的⼤写和⼩写字母， 数字0 到9、 标点符号， 以及在美式英语中使⽤的特殊控制字符。</font>
-+ <font style="color:rgb(52, 73, 94);">其中：</font>
-    - <font style="color:rgb(52, 73, 94);">0～31及127(共33个)是控制字符或通信专⽤字符（ 其余为可显⽰字符） ， 如控制符： LF（ 换⾏） 、 CR（ 回车） 、 FF（ 换页） 、 DEL（ 删除） 、 BS（ 退格)、 BEL（ 响铃） 等； 通信专⽤字符： SOH（ ⽂头） 、 EOT（ ⽂尾） 、 ACK（ 确认） 等；</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">ASCII值为8、 9、 10 和13 分别转换为退格、 制表、 换⾏和回车字符。 它们并没有特定的图形显⽰， 但会依不同的应⽤程序，⽽对⽂本显⽰有不同的影响</font>
-+ <font style="color:rgb(52, 73, 94);">32～126(共95个)是字符(32是空格） ， 其中48～57为0到9⼗个阿拉伯数字。</font>
-+ <font style="color:rgb(52, 73, 94);">65～90为26个⼤写英⽂字母， 97～122号为26个⼩写英⽂字母， 其余为⼀些标点符号、 运算符号等。</font>
++ ASCII（ American Standard Code for InformationInterchange， 美国信息交换标准代码） 是基于拉丁字母的⼀套电脑编码系统， 主要⽤于显⽰现代英语和其他西欧语⾔。
++ 是现今最通⽤的单字节编码系统， 并等同于国际标准ISO/IEC646。
++ 标准ASCII 码也叫基础ASCII码， 使⽤7 位⼆进制数（ 剩下的1位⼆进制为0） 来表⽰所有的⼤写和⼩写字母， 数字0 到9、 标点符号， 以及在美式英语中使⽤的特殊控制字符。
++ 其中：0～31及127(共33个)是控制字符或通信专⽤字符（ 其余为可显⽰字符） ， 如控制符： LF（ 换⾏） 、 CR（ 回车） 、 FF（ 换页） 、 DEL（ 删除） 、 BS（ 退格)、 BEL（ 响铃） 等； 通信专⽤字符： SOH（ ⽂头） 、 EOT（ ⽂尾） 、 ACK（ 确认） 等；
++ ASCII值为8、 9、 10 和13 分别转换为退格、 制表、 换⾏和回车字符。 它们并没有特定的图形显⽰， 但会依不同的应⽤程序，⽽对⽂本显⽰有不同的影响
++ 32～126(共95个)是字符(32是空格） ， 其中48～57为0到9⼗个阿拉伯数字。
++ 65～90为26个⼤写英⽂字母， 97～122号为26个⼩写英⽂字母， 其余为⼀些标点符号、 运算符号等。
 
 ## Unicode 字符集
-+ <font style="color:rgb(52, 73, 94);">ASCII码，只有256个字符，美国人倒是没啥问题了，他们用到的字符几乎都包括了，但是世界上不只有美国程序员啊，所以需要一种更加全面的字符集。</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">Unicode（中文：万国码、国际码、统一码、单一码）是计算机科学领域里的一项业界标准。它对世界上大部分的文字系统进行了整理、编码，使得计算机可以用更为简单的方式来呈现和处理文字。</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">Unicode伴随着通用字符集的标准而发展，同时也以书本的形式对外发表。Unicode至今仍在不断增修，每个新版本都加入更多新的字符。目前最新的版本为2018年6月5日公布的11.0.0，已经收录超过13万个字符（第十万个字符在2005年获采纳）。Unicode涵盖的数据除了视觉上的字形、编码方法、标准的字符编码外，还包含了字符特性，如大小写字母。</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">Unicode发展由非营利机构统一码联盟负责，该机构致力于让Unicode方案取代既有的字符编码方案。因为既有的方案往往空间非常有限，亦不适用于多语环境。</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">Unicode备受认可，并广泛地应用于计算机软件的国际化与本地化过程。有很多新科技，如可扩展置标语言（Extensible Markup Language，简称：XML）、Java编程语言以及现代的操作系统，都采用Unicode编码。</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">Unicode可以表示中文。</font>
++ ASCII码，只有256个字符，美国人倒是没啥问题了，他们用到的字符几乎都包括了，但是世界上不只有美国程序员啊，所以需要一种更加全面的字符集。
++ Unicode（中文：万国码、国际码、统一码、单一码）是计算机科学领域里的一项业界标准。它对世界上大部分的文字系统进行了整理、编码，使得计算机可以用更为简单的方式来呈现和处理文字。
++ Unicode伴随着通用字符集的标准而发展，同时也以书本的形式对外发表。Unicode至今仍在不断增修，每个新版本都加入更多新的字符。目前最新的版本为2018年6月5日公布的11.0.0，已经收录超过13万个字符（第十万个字符在2005年获采纳）。Unicode涵盖的数据除了视觉上的字形、编码方法、标准的字符编码外，还包含了字符特性，如大小写字母。
++ Unicode发展由非营利机构统一码联盟负责，该机构致力于让Unicode方案取代既有的字符编码方案。因为既有的方案往往空间非常有限，亦不适用于多语环境。
++ Unicode备受认可，并广泛地应用于计算机软件的国际化与本地化过程。有很多新科技，如可扩展置标语言（Extensible Markup Language，简称：XML）、Java编程语言以及现代的操作系统，都采用Unicode编码。
++ Unicode可以表示中文。
 
 ## UTF-8 编码规则
-+ <font style="color:rgb(52, 73, 94);">广义的 Unicode 是一个标准，定义了一个字符集以及一系列的编码规则，即 Unicode 字符集和 UTF-8、UTF-16、UTF-32 等等编码规则。</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">unicode虽然统一了全世界字符的二进制编码，但没有规定如何存储。</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">如果Unicode统一规定，每个符号就要用三个或四个字节表示，因为字符太多，只能用这么多字节才能表示完全。</font>
-+ <font style="color:rgb(52, 73, 94);">一旦这么规定，那么每个英文字母前都必然有二到三个字节是0，因为所有英文字母在ASCII中都有，都可以用一个字节表示，剩余字节位置就要补充0。</font>
-+ <font style="color:rgb(52, 73, 94);">如果这样，文本文件的大小会因此大出二三倍，这对于存储来说是极大的浪费。这样导致一个后果：出现了Unicode的多种存储方式。</font>
-+ <font style="color:rgb(52, 73, 94);">UTF-8就是Unicode的一个使用方式，通过他的英文名Unicode Tranformation Format就可以知道。</font>
-+ <font style="color:rgb(52, 73, 94);">UTF-8使用可变长度字节来储存 Unicode字符，例如ASCII字母继续使用1字节储存，重音文字、希腊字母或西里尔字母等使用2字节来储存，而常用的汉字就要使用3字节。辅助平面字符则使用4字节。</font>
-+ <font style="color:rgb(52, 73, 94);">一般情况下，同一个地区只会出现一种文字类型，比如中文地区一般很少出现韩文，日文等。所以使用这种编码方式可以大大节省空间。比如纯英文网站就要比纯中文网站占用的存储小一些。</font>
++ 广义的 Unicode 是一个标准，定义了一个字符集以及一系列的编码规则，即 Unicode 字符集和 UTF-8、UTF-16、UTF-32 等等编码规则。
++ unicode虽然统一了全世界字符的二进制编码，但没有规定如何存储。
++ 如果Unicode统一规定，每个符号就要用三个或四个字节表示，因为字符太多，只能用这么多字节才能表示完全。
++ 一旦这么规定，那么每个英文字母前都必然有二到三个字节是0，因为所有英文字母在ASCII中都有，都可以用一个字节表示，剩余字节位置就要补充0。
++ 如果这样，文本文件的大小会因此大出二三倍，这对于存储来说是极大的浪费。这样导致一个后果：出现了Unicode的多种存储方式。
++ UTF-8就是Unicode的一个使用方式，通过他的英文名Unicode Tranformation Format就可以知道。
++ UTF-8使用可变长度字节来储存 Unicode字符，例如ASCII字母继续使用1字节储存，重音文字、希腊字母或西里尔字母等使用2字节来储存，而常用的汉字就要使用3字节。辅助平面字符则使用4字节。
++ 一般情况下，同一个地区只会出现一种文字类型，比如中文地区一般很少出现韩文，日文等。所以使用这种编码方式可以大大节省空间。比如纯英文网站就要比纯中文网站占用的存储小一些。
 
 ## GBK 编码规则
-+ <font style="color:rgb(52, 73, 94);">其实UTF8确实已经是国际通用的字符编码了，但是这种字符标准毕竟是外国定的，而国内也有类似的标准指定组织，也需要制定一套国内通用的标准，于是GBK就诞生了。</font>
-
-
++ 其实UTF8确实已经是国际通用的字符编码了，但是这种字符标准毕竟是外国定的，而国内也有类似的标准指定组织，也需要制定一套国内通用的标准，于是GBK就诞生了。
 
 # 文件操作
 ## Path 接口
@@ -820,7 +762,15 @@ public static void main(String[] args) throws IOException {
 ```
 
 ### 使用流目录（过滤文件、遍历、删除目录）
-![](https://cdn.nlark.com/yuque/0/2022/png/2348240/1641209510047-1b07dd6b-e6e3-42bd-9d52-04696b7c3a12.png)
+
+| 通配符  | 功能描述                                                 | 示例说明                                                     |
+| ------- | -------------------------------------------------------- | ------------------------------------------------------------ |
+| `*`     | 匹配路径组成部分中0个或多个字符                          | `*.java` 匹配当前目录中的所有 Java 文件                      |
+| `**`    | 匹配跨目录边界的0个或多个字符                            | `**.java` 匹配在所有子目录中的 Java 文件                     |
+| `?`     | 匹配一个字符                                             | `????.java` 匹配所有四个字符的 Java 文件                     |
+| `[...]` | 匹配一个字符集合，可使用连线符 `[0-9]` 和取反符 `[^0-9]` | `Test[0-9A-F].java` 匹配 Testx.java 文件，其中 x 是一个十六进制数字 |
+| `(...)` | 匹配由逗号隔开的多个可选项之一                           | `*.{java,class}` 匹配所有的 Java 文件和类文件                |
+| `\`     | 转义上述任意模式中的字符以及 `\` 字符                    | `\*` 匹配所有文件名中包含 `*` 的文件                         |
 
 + 访问某个目录的所有子孙成员，调用 walkFileTree 方法，传递一个 FileVisitor（接口）【一般使用他的实现类 SimpleFileVisitor】类型的对象，有下列抽象方法：
     - 遇到一个目录中的文件时调用：FileVisitResult visitFile(T path, BasicFileAttributesattrs)
@@ -908,33 +858,23 @@ public class DirectoryStreamTest5 {
 ```
 
 ### 用到的枚举类
-+ StandardOpenOption 定义标准的开放选项。 与 newBufferedWrite、newInputStream、newOutputStream、write 方法配合使用。
-    - READ				用于读取而打开
-    - WRITE				用于写入而打开
-    - APPEND				如果用于写入而打开，则在文件末尾追加
-    - TRUNCATE_EXISTING	如果用于写入而打开，则移除已有内容
-    - **CREATE_NEW**			创建新文件，在文件已存时会创建失败
-    - **CREATE**				自动在文件不存在的情况下创建新文件
-    - DELETE_ON_CLOSE		当文件被关闭时，尽“可能”地删除该文件
-    - SPARSE				给文件系统一个提示，表示该文件是稀疏的
-    - DSYNC 或 SYN		要求对文件数据 | 数据和元数据的每次更新都必须同步地写人到存储设备中
 
-
-
-+ StandardCopyOption 定义标准复制选项。 与 copy、move 方法配合使用
-    - **ATOMIC_MOVE**			原子性地移动文件
-    - COPY_ATTRIBUTES			复制文件的属性
-    - **REPLACE__EXISTING**		如果目标已存在,则替换
-
-
-
-+ LinkOption 定义如何处理符号链接的选项。 与上面所有方法以及 exists、isDirectory、isRegularFile 等配合使用
-    - NOFOLLOW_LINKS		不要跟踪符号链接
-
-
-
-+ FileVisitOption 定义文件树遍历选项。 与 find、walk、walkFileTree 方法配合使用
-    - FOLLOW_LINKS	跟踪符号链接
+| 类别                                         | 选项                   | 描述                                                         | 配合使用的方法                                               |
+| -------------------------------------------- | ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **StandardOpenOption**<br>定义标准的开放选项 | `READ`                 | 用于读取而打开                                               | `newBufferedWrite`、`newInputStream`、`newOutputStream`、`write` |
+|                                              | `WRITE`                | 用于写入而打开                                               | 同上                                                         |
+|                                              | `APPEND`               | 如果用于写入而打开，则在文件末尾追加                         | 同上                                                         |
+|                                              | `TRUNCATE_EXISTING`    | 如果用于写入而打开，则移除已有内容                           | 同上                                                         |
+|                                              | **`CREATE_NEW`**       | 创建新文件，在文件已存时会创建失败                           | 同上                                                         |
+|                                              | **`CREATE`**           | 自动在文件不存在的情况下创建新文件                           | 同上                                                         |
+|                                              | `DELETE_ON_CLOSE`      | 当文件被关闭时，尽"可能"地删除该文件                         | 同上                                                         |
+|                                              | `SPARSE`               | 给文件系统一个提示，表示该文件是稀疏的                       | 同上                                                         |
+|                                              | `DSYNC` 或 `SYNC`      | 要求对文件数据 \| 数据和元数据的每次更新都必须同步地写入到存储设备中 | 同上                                                         |
+| **StandardCopyOption**<br>定义标准复制选项   | **`ATOMIC_MOVE`**      | 原子性地移动文件                                             | `copy`、`move`                                               |
+|                                              | `COPY_ATTRIBUTES`      | 复制文件的属性                                               | 同上                                                         |
+|                                              | **`REPLACE_EXISTING`** | 如果目标已存在，则替换                                       | 同上                                                         |
+| **LinkOption**<br>定义如何处理符号链接的选项 | `NOFOLLOW_LINKS`       | 不要跟踪符号链接                                             | 上面所有方法以及 `exists`、`isDirectory`、`isRegularFile` 等 |
+| **FileVisitOption**<br>定义文件树遍历选项    | `FOLLOW_LINKS`         | 跟踪符号链接                                                 | `find`、`walk`、`walkFileTree`                               |
 
 # IO
 ## 字节流与字符流
@@ -943,25 +883,42 @@ public class DirectoryStreamTest5 {
 + **Reader **还实现了 **Readable **接口（接口中有** read(CharBuffer cb)** 方法）
 
 ### 输入流，输出流
-+ <font style="color:rgb(52, 73, 94);">输入、输出，有一个参照物，参照物就是存储数据的介质。如果是把对象读入到介质中，这就是输入。从介质中向外读数据，这就是输出。</font>
-+ <font style="color:rgb(52, 73, 94);">所以，输入流是把数据写入存储介质的。输出流是从存储介质中把数据读取出来。</font>
++ 输入、输出，有一个参照物，参照物就是存储数据的介质。如果是把对象读入到介质中，这就是输入。从介质中向外读数据，这就是输出。
++ 所以，输入流是把数据写入存储介质的。输出流是从存储介质中把数据读取出来。
 
 ### 字节与字符
-+ <font style="color:rgb(52, 73, 94);">Bit最小的二进制单位 ，是计算机的操作部分。取值0或者1</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">Byte（字节）是计算机操作数据的最小单位由8位bit组成 取值（-128-127）</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">Char（字符）是用户的可读写的最小单位，在Java里面由16位bit组成 取值（0-65535）</font>
++ Bit最小的二进制单位 ，是计算机的操作部分。取值0或者1
++ Byte（字节）是计算机操作数据的最小单位由8位bit组成 取值（-128-127）
++ Char（字符）是用户的可读写的最小单位，在Java里面由16位bit组成 取值（0-65535）
 
 ### 字节流
-+ <font style="color:rgb(52, 73, 94);">操作byte类型数据，主要操作类是</font>java.io.**InputStream****<font style="color:rgb(52, 73, 94);">、</font>**java.io.**OutputStream**<font style="color:rgb(52, 73, 94);">的子类；不用缓冲区，直接对文件本身操作。</font>
++ 操作byte类型数据，主要操作类是java.io.InputStream、java.io.OutputStream的子类；不用缓冲区，直接对文件本身操作。
 
 #### 读写文件
-| InputStream 中的方法：<br/>    abstract int read()：读取一个字节。返回读取的字节，到文件末尾返回 -1，所有子类都只需要重写这个方法。<br/>    int **read**(byte[] b)：读取一个字节数组。返回读取的字节数，达到文件的末尾返回 -1<br/>    byte[] readAllBytes()：返回数组，包含从当前流读入的所有字节   jdk 9<br/>    long **transferTo**(OutputStream out) ：从输入流中读取所有字节传送到输出流。jdk 9<br/>    void **close**()：关闭流<br/><br/>OutputStream 中的方法：<br/>    abstract void write(int n)：写一个字节数据<br/>    void write(byte[] b)：写一个字节数组数据<br/>    void **write**(byte[] b, int off, int len)：写一个字节数组的部分数据<br/>    void **close**()：冲刷并关闭流<br/>    viod **flush**()：冲刷输出流，即将所有缓冲的数据发送到目的地 |
-| --- |
 
+# Java 输入输出流方法总结
 
-+ **举例**
+### InputStream 类方法
+
+| 方法签名                            | 返回值   | 描述                                                      | 备注                       |
+| ----------------------------------- | -------- | --------------------------------------------------------- | -------------------------- |
+| `abstract int read()`               | `int`    | 读取一个字节。返回读取的字节，到文件末尾返回 -1           | 所有子类都必须重写这个方法 |
+| `int read(byte[] b)`                | `int`    | 读取一个字节数组。返回读取的字节数，达到文件的末尾返回 -1 |                            |
+| `byte[] readAllBytes()`             | `byte[]` | 返回数组，包含从当前流读入的所有字节                      | JDK 9 新增                 |
+| `long transferTo(OutputStream out)` | `long`   | 从输入流中读取所有字节传送到输出流                        | JDK 9 新增                 |
+| `void close()`                      | `void`   | 关闭流                                                    |                            |
+
+### OutputStream 类方法
+
+| 方法签名                                 | 返回值 | 描述                                       | 备注                       |
+| ---------------------------------------- | ------ | ------------------------------------------ | -------------------------- |
+| `abstract void write(int n)`             | `void` | 写一个字节数据                             | 所有子类都必须重写这个方法 |
+| `void write(byte[] b)`                   | `void` | 写一个字节数组数据                         |                            |
+| `void write(byte[] b, int off, int len)` | `void` | 写一个字节数组的部分数据                   |                            |
+| `void close()`                           | `void` | 冲刷并关闭流                               |                            |
+| `void flush()`                           | `void` | 冲刷输出流，即将所有缓冲的数据发送到目的地 |                            |
+
+### 举例
 
 ```java
 public static void main(String[] args){
@@ -1016,17 +973,12 @@ try (
 ```
 
 ### 字符流
-+ <font style="color:rgb(52, 73, 94);">操作字符类型数据，主要操作类是</font>**<font style="color:rgb(52, 73, 94);">Reader、Writer</font>**<font style="color:rgb(52, 73, 94);">的子类；使用缓冲区缓冲字符，不关闭流就不会输出任何内容。</font>
-+ 
++ 操作字符类型数据，主要操作类是Reader、Writer的子类；使用缓冲区缓冲字符，不关闭流就不会输出任何内容。
 + 字符流处理的单元为 2 字节的 Unicode 字符，分别操作字符、字符数组或字符串。
-+ 
 + 字符流是由 Java 虚拟机将字节转化 Unicode 字符为单位的字符而成的，如果是音频文件、图片，用字节流好点，如果是关系到中文（文本）的，用字符流好点。
-+ 
 + 所有文件的储存是都是字节（byte）的储存，在磁盘上保留的并不是文件的字符而是先把字符编码成字节，再储存这些字节到磁盘。在读取文件（特别是文本文件）时，也是字节的形式读取以形成字节序列。
     - 字节流可用于任何类型的对象，包括二进制对象，而字符流只能处理字符或者字符串； 
     - 字节流提供了处理任何类型的 IO 操作的功能，但它不能直接处理 Unicode 字符，字符流可以。
-
-
 
 #### 读写数据
 ```java
@@ -1072,20 +1024,17 @@ public static void main(String[] args) {
 ```
 
 ### 相互转换
-+ <font style="color:rgb(52, 73, 94);">整个IO包实际上分为字节流和字符流，但是除了这两个流之外，还存在一组字节流-字符流的转换类。</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ **<font style="color:rgb(52, 73, 94);">OutputStreamWriter</font>**<font style="color:rgb(52, 73, 94);">：是Writer的子类，将输出的字符流变为字节流，即将一个字符流的输出对象变为字节流输出对象。（</font>将写入的字符编码为字节。<font style="color:rgb(52, 73, 94);">）</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ **<font style="color:rgb(52, 73, 94);">InputStreamReader</font>**<font style="color:rgb(52, 73, 94);">：是Reader的子类，将输入的字节流变为字符流，即将一个字节流的输入对象变为字符流的输入对象。</font>（读取字节，将其解码为字符。）
++ 整个IO包实际上分为字节流和字符流，但是除了这两个流之外，还存在一组字节流-字符流的转换类。
++ OutputStreamWriter 是 Writer 的子类，将输出的字符流变为字节流，即将一个字符流的输出对象变为字节流输出对象。（将写入的字符编码为字节。）
++ InputStreamReader 是 Reader 的子类，将输入的字节流变为字符流，即将一个字节流的输入对象变为字符流的输入对象。（读取字节，将其解码为字符。）
 
 ```java
 public static void main(String[] args) {
-		try (InputStreamReader isr = new InputStreamReader(new FileInputStream("E:\\test\\fis.txt"), "UTF-8"); // 读入字节流
-
-				FileWriter fw = new FileWriter("E:\\test\\fr.txt"); // 字符输出流
-
-				// （fos.txt的中文会乱码显示，编解码方式不同）
-				OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream("E:\\test\\fos.txt"), "GBK"); // 输出字符流
+		try (InputStreamReader isr = new InputStreamReader(new FileInputStream("E:\\test\\fis.txt"), "UTF-8");
+             // 读入字节流
+             FileWriter fw = new FileWriter("E:\\test\\fr.txt"); // 字符输出流
+             // （fos.txt的中文会乱码显示，编解码方式不同）
+             OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream("E:\\test\\fos.txt"), "GBK"); // 输出字符流
 		) {
 			int len;
 			char[] chs = new char[1];
@@ -1193,16 +1142,15 @@ public class RandomAccessFileDemo {
 ```
 
 # 序列化
-+ <font style="color:rgb(52, 73, 94);">序列化是将对象转换为可传输格式的过程。 是一种</font>**<font style="color:rgb(52, 73, 94);">数据的持久化手段</font>**<font style="color:rgb(52, 73, 94);">。一般广泛应用于网络传输，RMI和RPC等场景中。</font>
-+ <font style="color:rgb(52, 73, 94);">反序列化是序列化的逆操作。</font>
-+ <font style="color:rgb(52, 73, 94);">一般是以字节码或XML格式传输。而字节码或XML编码格式可以还原为完全相等的对象。这个相反的过程称为反序列化。</font>
++ 序列化是将对象转换为可传输格式的过程。 是一种数据的持久化手段。一般广泛应用于网络传输，RMI和RPC等场景中。
++ 反序列化是序列化的逆操作。
++ 一般是以字节码或XML格式传输。而字节码或XML编码格式可以还原为完全相等的对象。这个相反的过程称为反序列化。
 
 ## Java 中的序列化与反序列化
-+ <font style="color:rgb(52, 73, 94);">在 Java 中，我们可以通过多种方式来创建对象，并且只要对象没有被回收我们都可以复用该对象。但是，我们创建出来的这些 Java 对象都是存在于 JVM 的堆内存中的。只有 JVM 处于运行状态的时候，这些对象才可能存在。一旦 JVM 停止运行，这些对象的状态也就随之而丢失了。</font>
-+ <font style="color:rgb(52, 73, 94);">但是在真实的应用场景中，我们需要将这些对象持久化下来，并且能够在需要的时候把对象重新读取出来。Java的对象序列化可以帮助我们实现该功能。</font>
-+ <font style="color:rgb(52, 73, 94);">对象序列化机制（object serialization）是Java语言内建的一种对象持久化方式，通过对象序列化，可以把对象的状态保存为字节数组，并且可以在有需要的时候将这个字节数组通过反序列化的方式再转换成对象。对象序列化可以很容易的在JVM中的活动对象和字节数组（流）之间进行转换。</font>
-+ <font style="color:rgb(52, 73, 94);">在Java中，对象的序列化与反序列化被广泛应用到RMI(远程方法调用)及网络传输中。</font>
-+ 
++ 在 Java 中，我们可以通过多种方式来创建对象，并且只要对象没有被回收我们都可以复用该对象。但是，我们创建出来的这些 Java 对象都是存在于 JVM 的堆内存中的。只有 JVM 处于运行状态的时候，这些对象才可能存在。一旦 JVM 停止运行，这些对象的状态也就随之而丢失了。
++ 但是在真实的应用场景中，我们需要将这些对象持久化下来，并且能够在需要的时候把对象重新读取出来。Java的对象序列化可以帮助我们实现该功能。
++ 对象序列化机制（object serialization）是Java语言内建的一种对象持久化方式，通过对象序列化，可以把对象的状态保存为字节数组，并且可以在有需要的时候将这个字节数组通过反序列化的方式再转换成对象。对象序列化可以很容易的在JVM中的活动对象和字节数组（流）之间进行转换。
++ 在Java中，对象的序列化与反序列化被广泛应用到RMI(远程方法调用)及网络传输中。
 + 某个对象的属性不被序列化，用 transient 修饰
 
 ## 相关类及接口
@@ -1214,19 +1162,18 @@ public class RandomAccessFileDemo {
 + **ObjectInputStream**
 
 ## Serializable 接口
-+ <font style="color:rgb(52, 73, 94);">类通过实现</font>**<font style="color:rgb(52, 73, 94);"> </font>****<font style="color:rgb(233, 105, 0);background-color:rgb(248, 248, 248);">java.io.Serializable</font>**<font style="color:rgb(52, 73, 94);"> 接口以启用其序列化功能。未实现此接口的类将无法使其任何状态序列化或反序列化。可序列化类的所有子类型本身都是可序列化的。</font>**<font style="color:rgb(44, 62, 80);">序列化接口没有方法或字段，仅用于标识可序列化的语义。</font>**
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">当试图对一个对象进行序列化的时候，如果遇到不支持 Serializable 接口的对象。在此情况下，将抛出 </font><font style="color:rgb(233, 105, 0);background-color:rgb(248, 248, 248);">NotSerializableException</font><font style="color:rgb(52, 73, 94);">。</font>
-+ <font style="color:rgb(52, 73, 94);"></font>
-+ <font style="color:rgb(52, 73, 94);">如果要序列化的类有父类，要想同时将在父类中定义过的变量持久化下来，那么父类也应该集成</font><font style="color:rgb(233, 105, 0);background-color:rgb(248, 248, 248);">java.io.Serializable</font><font style="color:rgb(52, 73, 94);">接口。</font>
++ 类通过实现 java.io.Serializable 接口以启用其序列化功能。未实现此接口的类将无法使其任何状态序列化或反序列化。可序列化类的所有子类型本身都是可序列化的。序列化接口没有方法或字段，仅用于标识可序列化的语义。
++ 当试图对一个对象进行序列化的时候，如果遇到不支持 Serializable 接口的对象。在此情况下，将抛出 NotSerializableException
++ 如果要序列化的类有父类，要想同时将在父类中定义过的变量持久化下来，那么父类也应该集成 java.io.Serializable 接口。
 
+### 序列化过程（写入对象）
+```java
+ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data.obj"));
+oos.writeObject(obj);  // 将对象序列化到文件
+```
 
-
-
-
-+ `ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(".."));`  
-`void writeObject (Object obj)`
-+ 
-+ `ObjectInputStream ois = new ObjectInputStream(new FileInputStream(".."));`  
-`Object readObject() `
-
+### 反序列化过程（读取对象）
+```java
+ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data.obj"));
+Object obj = ois.readObject();  // 从文件反序列化对象
+```
