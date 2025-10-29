@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .input-box {
+        width: 200px;
+        position: relative;
+        margin: 90px 30px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-bottom: 1px solid #999;
+      }
+
+      input:focus {
+        outline: none;
+      }
+
+      label {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #999;
+        transition: 0.3s;
+      }
+
+      input:focus~label,
+/* 使用 placeholder-shown 判断来确定label位置 ( 此时需设置placeholder=" " ) */
+.input-field-underlined:not(:placeholder-shown)~label {
+        top: -8px;
+        left: 4px;
+        color: #6060d6;
+        font-size: 14px;
+      }
+
+      /* 使用 required valid 是否有值判断来确定label位置 */
+      .input-field-outlined:valid ~ label {
+        top: -10px;
+        left: 12px;
+        color: #6060d6;
+        font-size: 14px;
+      }
+
+      input:focus ~ .input-label-outlined {
+        top: -10px;
+        left: 12px;
+        color: #6060d6;
+        font-size: 14px;
+      }
+
+      .input-underline-bar {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        right: 50%;
+        width: 0;
+        height: 2px;
+        background-color: #6060d6;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+
+      input:focus ~ .input-underline-bar {
+        width: 100%;
+        left: 0;
+        right: 0;
+      }
+
+      .input-fieldset {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        top: -20px;
+        left: 0;
+        padding: 0 8px;
+        pointer-events: none;
+        border-radius: 5px;
+        border: 1px solid #999;
+        min-width: 0%;
+      }
+
+      .input-legend {
+        padding: 0;
+        max-width: 0;
+        visibility: hidden;
+        transition: all 0.01s;
+      }
+
+      .input-field-outlined:focus ~ .input-fieldset > .input-legend,
+      .input-field-outlined:valid ~ .input-fieldset > .input-legend {
+        max-width: 100%;
+      }
+
+      .input-field-outlined:focus ~ .input-fieldset,
+      .input-field-outlined:valid ~ .input-fieldset {
+        border-color: #6060a6;
+      }
+
+      .input-field-outlined {
+        position: relative;
+        top: -6px;
+        border-bottom: none;
+      }
+
+      .input-label-outlined {
+        top: 35%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="input-box box1">
+      <input type="text" class="input-field-outlined" required />
+      <fieldset class="input-fieldset">
+        <legend class="input-legend">Username</legend>
+      </fieldset>
+      <label for="username" class="input-label-outlined">Username</label>
+    </div>
+
+    <div class="input-box">
+      <input type="text" class="input-field-underlined" placeholder=" " />
+      <label for="username">Username</label>
+      <span class="input-underline-bar"></span>
+    </div>
+  </body>
+</html>

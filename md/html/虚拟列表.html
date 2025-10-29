@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Virtual Scroll List</title>
+  <style>
+    .virtual-scroll-container {
+      position: relative;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .virtual-items-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .product-item {
+      display: flex;
+      padding: 0 10px;
+      border-bottom: 1px solid #eee;
+      height: 80px;
+      box-sizing: border-box;
+    }
+
+    .product-info {
+      flex: 1;
+      padding: 0 10px;
+    }
+
+    p,
+    h3 {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-container">
+    <h1>虚拟列表</h1>
+    <ul>
+      <li>
+        <a href="https://clusterize.js.org/">https://clusterize.js.org/</a>
+      </li>
+      <li>
+        <a href="https://github.com/bvaughn/react-virtualized">https://github.com/bvaughn/react-virtualized</a>
+      </li>
+      <li>
+        <a href="https://github.com/tanstack/virtual">https://github.com/tanstack/virtual</a>
+      </li>
+      <li>
+        <a href="https://github.com/bvaughn/react-window">https://github.com/bvaughn/react-window</a>
+      </li>
+    </ul>
+    <div id="list-container" class="list-container"></div>
+  </div>
+
+  <script>
+    function createVirtualScrollList(config) {
+      // 容器元素
+      const container = document.createElement("div");
+      container.className = "virtual-scroll-container";
+      if (config.style) {
+        Object.assign(container.style, config.style);
+      }
+
+      // 占位元素（撑开滚动条）
+      const placeholder = document.createElement("div");
+      placeholder.className = "scroll-placeholder";
+      container.appendChild(placeholder);
+
+      // 项目容器
+      const itemsWrapper = document.createElement("div");
+      itemsWrapper.className = "virtual-items-wrapper";
+      container.appendChild(itemsWrapper);
+
+      // 状态变量
+      let startIndex = 0;
+      let visibleCount = 0;
+      let scrollTimer = null;
+
+      // 更新可见区域
+      function updateVisibleRange() {
+        const scrollTop = container.scrollTop;
+        const clientHeight = container.clientHeight;
+
+        // 计算可见范围
+        startIndex = Math.max(
+          0,
+          Math.floor(scrollTop / config.itemHeight) - (config.overscan || 5)
+        );
+        visibleCount =
+          Math.ceil(clientHeight / config.itemHeight) +
+          2 * (config.overscan || 5);
+
+        // 更新占位高度
+        placeholder.style.height = `${config.data.length * config.itemHeight
+          }px`;
+
+        // 更新项目容器位置
+        itemsWrapper.style.top = `${startIndex * config.itemHeight}px`;
+
+        // 渲染可见项目
+        renderItems();
+      }
+
+      // 渲染当前可见项目
+      function renderItems() {
+        // 清空容器
+        itemsWrapper.innerHTML = "";
+
+        const endIndex = Math.min(
+          startIndex + visibleCount,
+          config.data.length
+        );
+
+        // 创建可见项目
+        for (let i = startIndex; i < endIndex; i++) {
+          const item = config.data[i];
+          const itemElement = document.createElement("div");
+          itemElement.className = "virtual-item";
+          itemElement.style.height = `${config.itemHeight}px`;
+
+          // 调用自定义渲染函数
+          const content = config.renderItem(item, i);
+          if (typeof content === "string") {
+            itemElement.innerHTML = content;
+          } else {
+            itemElement.appendChild(content);
+          }
+
+          itemsWrapper.appendChild(itemElement);
+        }
+      }
+
+      // 滚动事件处理
+      function handleScroll() {
+        if (scrollTimer) {
+          cancelAnimationFrame(scrollTimer);
+        }
+        scrollTimer = requestAnimationFrame(updateVisibleRange);
+      }
+
+      // 初始化
+      container.addEventListener("scroll", handleScroll);
+      updateVisibleRange();
+
+      // 窗口大小变化时更新
+      window.addEventListener("resize", updateVisibleRange);
+
+      return container;
+    }
+
+    // 页面加载完成后初始化
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("list-container");
+
+      // 模拟产品数据
+      const products = Array.from({ length: 2000 }, (_, i) => ({
+        id: i,
+        name: `产品 ${i + 1}`,
+        price: Math.floor(Math.random() * 1000) + 100,
+        description: `产品 ${i + 1} 的详细描述`,
+      }));
+
+      // 创建虚拟滚动列表
+      const virtualList = createVirtualScrollList({
+        data: products,
+        itemHeight: 80,
+        overscan: 5,
+        renderItem: (product) => {
+          const item = document.createElement("div");
+          item.className = "product-item";
+          item.innerHTML = `
+            <div class="product-id">#${product.id}</div>
+            <div class="product-info">
+              <h3>${product.name}</h3>
+              <p class="product-desc">${product.description}</p>
+            </div>
+            <div class="product-price">¥${product.price.toFixed(2)}</div>
+          `;
+          return item;
+        },
+        style: {
+          height: "70vh",
+          border: "1px solid #ccc",
+        },
+      });
+
+      container.appendChild(virtualList);
+    });
+  </script>
+</body>
+
+</html>
